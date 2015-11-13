@@ -197,16 +197,6 @@ namespace xSaliceResurrected
             //for champ use
         }
 
-        private void BeforeAttackEvent(xSaliceWalker.BeforeAttackEventArgs args)
-        {
-            BeforeAttack(args);
-        }
-
-        protected virtual void BeforeAttack(xSaliceWalker.BeforeAttackEventArgs args)
-        {
-            //for champ use
-        }
-
         private void BeforeAttackEvent(Orbwalking.BeforeAttackEventArgs args)
         {
             BeforeAttack(args);

@@ -280,17 +280,6 @@ namespace xSaliceResurrected.Mid
             }
         }
 
-        protected override void BeforeAttack(xSaliceWalker.BeforeAttackEventArgs args)
-        {
-            if (!menu.Item("disableAA", true).GetValue<bool>() || !(args.Target is Obj_AI_Hero))
-                return;
-
-            if (Q.IsReady() || W.IsReady() || (E.IsReady() && _poisonTargets.Any(x => x.NetworkId == args.Target.NetworkId)))
-                args.Process = false;
-            else
-                args.Process = true;
-        }
-
         protected override void BeforeAttack(Orbwalking.BeforeAttackEventArgs args)
         {
             if (!menu.Item("disableAA", true).GetValue<bool>() || !(args.Target is Obj_AI_Hero))

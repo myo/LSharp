@@ -366,16 +366,6 @@ namespace xSaliceResurrected.Support
             }
         }
 
-
-        protected override void BeforeAttack(xSaliceWalker.BeforeAttackEventArgs args)
-        {
-            if (!menu.Item("disableAA", true).GetValue<bool>() )
-                return;
-
-            if ((args.Target is Obj_AI_Minion) && menu.Item("HarassActive", true).GetValue<KeyBind>().Active)
-                args.Process = false;
-        }
-
         protected override void BeforeAttack(Orbwalking.BeforeAttackEventArgs args)
         {
             if (!menu.Item("disableAA", true).GetValue<bool>())

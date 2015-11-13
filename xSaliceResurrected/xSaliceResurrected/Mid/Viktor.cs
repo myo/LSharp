@@ -292,20 +292,6 @@ namespace xSaliceResurrected.Mid
             }
         }
 
-        protected override void BeforeAttack(xSaliceWalker.BeforeAttackEventArgs args)
-        {
-            if (!menu.Item("ComboActive", true).GetValue<KeyBind>().Active &&
-                !menu.Item("HarassActive", true).GetValue<KeyBind>().Active)
-                return;
-
-            if (args.Target.Type == GameObjectType.obj_AI_Hero)
-            {
-                args.Process = !(Q.IsReady() && Player.Mana >= QSpell.ManaCost);
-            }
-            else
-                args.Process = true;
-        }
-
         protected override void BeforeAttack(Orbwalking.BeforeAttackEventArgs args)
         {
             if (!menu.Item("ComboActive", true).GetValue<KeyBind>().Active &&

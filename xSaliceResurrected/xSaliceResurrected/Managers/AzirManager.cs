@@ -9,7 +9,7 @@ namespace xSaliceResurrected.Managers
     class AzirManager : Orbwalking.Orbwalker
     {
         private static readonly Obj_AI_Hero MyHero = ObjectManager.Player;
-        public static readonly List<Obj_AI_Minion> Soilders = new List<Obj_AI_Minion>();
+        public static readonly List<Obj_AI_Minion> Soldiers = new List<Obj_AI_Minion>();
 
         public AzirManager(Menu attachToMenu) : base(attachToMenu)
         {
@@ -20,7 +20,7 @@ namespace xSaliceResurrected.Managers
             var unit = (Obj_AI_Base)target;
             var dmg = MyHero.GetSpellDamage(unit, SpellSlot.W);
 
-            var count = Soilders.Count(obj => obj.Position.Distance(unit.Position) < 350);
+            var count = Soldiers.Count(obj => obj.Position.Distance(unit.Position) < 350);
 
             if (count > 1)
                 return dmg + dmg * (count - 1);
@@ -30,7 +30,7 @@ namespace xSaliceResurrected.Managers
 
         public static bool InSoldierAttackRange(AttackableUnit target)
         {
-            return Soilders.Count(obj => obj.Position.Distance(target.Position) < 350 && MyHero.Distance(target) < 1000 && !obj.IsMoving) > 0;
+            return Soldiers.Count(obj => obj.Position.Distance(target.Position) < 350 && MyHero.Distance(target) < 1000 && !obj.IsMoving) > 0;
         }
 
         private static float GetAutoAttackRange(Obj_AI_Base source = null, AttackableUnit target = null)
@@ -95,7 +95,7 @@ namespace xSaliceResurrected.Managers
             if (ActiveMode == Orbwalking.OrbwalkingMode.LaneClear || ActiveMode == Orbwalking.OrbwalkingMode.Mixed)
             {
                 float[] maxhealth;
-                if (MyHero.ChampionName == "Azir" && Soilders.Count > 0)
+                if (MyHero.ChampionName == "Azir" && Soldiers.Count > 0)
                 {
                     maxhealth = new float[] { 0 };
                     var maxhealth1 = maxhealth;
@@ -156,7 +156,7 @@ namespace xSaliceResurrected.Managers
 
         public static void OnDelete(GameObject sender, EventArgs args)
         {
-            Soilders.RemoveAll(s => s.NetworkId == sender.NetworkId);
+            Soldiers.RemoveAll(s => s.NetworkId == sender.NetworkId);
         }
 
         public static void Obj_OnCreate(GameObject sender, EventArgs args)
@@ -168,7 +168,7 @@ namespace xSaliceResurrected.Managers
             {
                 Obj_AI_Minion soldier = (Obj_AI_Minion) sender;
                 if (soldier.SkinName == "AzirSoldier")
-                    Soilders.Add(soldier);
+                    Soldiers.Add(soldier);
             }
         }
     }

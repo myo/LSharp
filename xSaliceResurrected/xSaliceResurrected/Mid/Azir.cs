@@ -55,7 +55,7 @@ namespace xSaliceResurrected.Mid
                 key.AddItem(new MenuItem("escape", "Escape", true).SetValue(new KeyBind("Z".ToCharArray()[0], KeyBindType.Press)));
                 key.AddItem(new MenuItem("insec", "Insec Selected target", true).SetValue(new KeyBind("J".ToCharArray()[0], KeyBindType.Press)));
                 key.AddItem(new MenuItem("qeCombo", "Q->E stun Nearest target", true).SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
-                key.AddItem(new MenuItem("qMulti", "Q if 2+ Soilder", true).SetValue(new KeyBind("I".ToCharArray()[0], KeyBindType.Toggle)));
+                key.AddItem(new MenuItem("qMulti", "Q if 2+ Soldier", true).SetValue(new KeyBind("I".ToCharArray()[0], KeyBindType.Toggle)));
                 //add to menu
                 menu.AddSubMenu(key);
             }
@@ -202,7 +202,7 @@ namespace xSaliceResurrected.Mid
             if (Q.IsReady())
                 damage += Player.GetSpellDamage(enemy, SpellSlot.Q);
 
-            if (soilderCount() > 0 || W.IsReady())
+            if (soldierCount() > 0 || W.IsReady())
             {
                 damage += AzirManager.GetAzirAaSandwarriorDamage(enemy);
             }
@@ -236,10 +236,10 @@ namespace xSaliceResurrected.Mid
                 return;
 
             var qTarget = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Magical);
-            var soilderTarget = TargetSelector.GetTarget(1200, TargetSelector.DamageType.Magical);
-            var dmg = GetComboDamage(soilderTarget);
+            var soldierTarget = TargetSelector.GetTarget(1200, TargetSelector.DamageType.Magical);
+            var dmg = GetComboDamage(soldierTarget);
 
-            if (soilderTarget == null || qTarget == null)
+            if (soldierTarget == null || qTarget == null)
                 return;
 
             //R
@@ -262,10 +262,10 @@ namespace xSaliceResurrected.Mid
             //items
             if (source == "Combo")
             {
-                ItemManager.Target = soilderTarget;
+                ItemManager.Target = soldierTarget;
 
                 //see if killable
-                if (dmg > soilderTarget.Health - 50)
+                if (dmg > soldierTarget.Health - 50)
                     ItemManager.KillableTarget = true;
 
                 ItemManager.UseTargetted = true;
@@ -275,7 +275,7 @@ namespace xSaliceResurrected.Mid
             //E
             if (useE && (E.IsReady() || ESpell.State == SpellState.Surpressed))
             {
-                CastE(soilderTarget);
+                CastE(soldierTarget);
             }
         }
 
@@ -304,7 +304,7 @@ namespace xSaliceResurrected.Mid
                         R.Cast(target);
                     }
 
-                    if (soilderCount() < 1 && !W.IsReady())
+                    if (soldierCount() < 1 && !W.IsReady())
                         return;
 
                     //WQ
@@ -347,15 +347,15 @@ namespace xSaliceResurrected.Mid
 
             if ((E.IsReady() || ESpell.State == SpellState.Surpressed))
             {
-                if (soilderCount() < 1 && W.IsReady())
+                if (soldierCount() < 1 && W.IsReady())
                     W.Cast(wVec);
-                else if (soilderCount() < 1 && !W.IsReady())
+                else if (soldierCount() < 1 && !W.IsReady())
                     return;
 
-                if (GetNearestSoilderToMouse() == null)
+                if (GetNearestSoldierToMouse() == null)
                     return;
 
-                var nearSlave = GetNearestSoilderToMouse();
+                var nearSlave = GetNearestSoldierToMouse();
 
                 if ((E.IsReady() || ESpell.State == SpellState.Surpressed) &&
                     Player.Distance(Game.CursorPos) > Game.CursorPos.Distance(nearSlave.Position))
@@ -371,12 +371,12 @@ namespace xSaliceResurrected.Mid
             
         }
 
-        private GameObject GetNearestSoilderToMouse()
+        private GameObject GetNearestSoldierToMouse()
         {
-            var soilder = AzirManager.Soilders.ToList().OrderBy(x => Game.CursorPos.Distance(x.Position));
+            var soldier = AzirManager.Soldiers.ToList().OrderBy(x => Game.CursorPos.Distance(x.Position));
 
-            if (soilder.FirstOrDefault() != null)
-                return soilder.FirstOrDefault();
+            if (soldier.FirstOrDefault() != null)
+                return soldier.FirstOrDefault();
 
             return null;
         }
@@ -443,10 +443,10 @@ namespace xSaliceResurrected.Mid
 
         private void CastQ(Obj_AI_Hero target, string source)
         {
-            if (soilderCount() < 1)
+            if (soldierCount() < 1)
                 return;
 
-            var slaves = AzirManager.Soilders.ToList();
+            var slaves = AzirManager.Soldiers.ToList();
 
             foreach (var slave in slaves)
             {
@@ -467,10 +467,10 @@ namespace xSaliceResurrected.Mid
 
         private void CastE(Obj_AI_Hero target)
         {
-            if (soilderCount() < 1)
+            if (soldierCount() < 1)
                 return;
 
-            var slaves = AzirManager.Soilders.ToList();
+            var slaves = AzirManager.Soldiers.ToList();
 
             foreach (var slave in slaves)
             {
@@ -493,7 +493,7 @@ namespace xSaliceResurrected.Mid
         private bool ShouldQ(Obj_AI_Hero target, GameObject slave)
         {
 
-            if (soilderCount() < 2 && menu.Item("qMulti", true).GetValue<KeyBind>().Active)
+            if (soldierCount() < 2 && menu.Item("qMulti", true).GetValue<KeyBind>().Active)
                 return false;
 
             if (!menu.Item("qOutRange", true).GetValue<bool>())
@@ -510,7 +510,7 @@ namespace xSaliceResurrected.Mid
         }
         private bool ShouldE(Obj_AI_Hero target)
         {
-            if (menu.Item("eKnock", true).GetValue<bool>())
+            if (menu.Item("eKnock", true).GetValue<bool>() && GetNearestSoldierToMouse().Position.Distance(target.ServerPosition, true) < 40000)
                 return true;
 
             if (menu.Item("eKill", true).GetValue<bool>() && GetComboDamage(target) > target.Health + 15)
@@ -548,29 +548,29 @@ namespace xSaliceResurrected.Mid
 
         private void AutoAtk()
         {
-            if (soilderCount() < 1)
+            if (soldierCount() < 1)
                 return;
 
-            var soilderTarget = TargetSelector.GetTarget(1000, TargetSelector.DamageType.Magical);
+            var soldierTarget = TargetSelector.GetTarget(1000, TargetSelector.DamageType.Magical);
 
-            if (soilderTarget == null)
+            if (soldierTarget == null)
                 return;
 
-            AttackTarget(soilderTarget);
+            AttackTarget(soldierTarget);
         }
 
-        private int soilderCount()
+        private int soldierCount()
         {
-            return AzirManager.Soilders.Count();
+            return AzirManager.Soldiers.Count();
         }
 
 
         private void AttackTarget(Obj_AI_Hero target)
         {
-            if (soilderCount() < 1)
+            if (soldierCount() < 1)
                 return;
 
-            var tar = getNearestSoilderToEnemy(target);
+            var tar = getNearestSoldierToEnemy(target);
             if (tar != null && Player.Distance(tar.Position) < 800)
             {
                 if (target != null && target.Distance(tar.Position) <= 350)
@@ -581,12 +581,12 @@ namespace xSaliceResurrected.Mid
 
         }
 
-        private GameObject getNearestSoilderToEnemy(Obj_AI_Base target)
+        private GameObject getNearestSoldierToEnemy(Obj_AI_Base target)
         {
-            var soilder = AzirManager.Soilders.ToList().OrderBy(x => target.Distance(x.Position));
+            var soldier = AzirManager.Soldiers.ToList().OrderBy(x => target.Distance(x.Position));
 
-            if (soilder.FirstOrDefault() != null)
-                return soilder.FirstOrDefault();
+            if (soldier.FirstOrDefault() != null)
+                return soldier.FirstOrDefault();
 
             return null;
         }
@@ -606,9 +606,9 @@ namespace xSaliceResurrected.Mid
             if (useQ && (Q.IsReady() || QSpell.State == SpellState.Surpressed))
             {
                 int hit;
-                if (soilderCount() > 0)
+                if (soldierCount() > 0)
                 {
-                    var slaves = AzirManager.Soilders.ToList();
+                    var slaves = AzirManager.Soldiers.ToList();
                     foreach (var slave in slaves)
                     {
                         foreach (var enemy in allMinionsQ)
@@ -694,10 +694,10 @@ namespace xSaliceResurrected.Mid
             }
             else if (menu.Item("qeCombo", true).GetValue<KeyBind>().Active)
             {
-                var soilderTarget = TargetSelector.GetTarget(900, TargetSelector.DamageType.Magical);
+                var soldierTarget = TargetSelector.GetTarget(900, TargetSelector.DamageType.Magical);
 
                 OrbwalkManager.Orbwalk(null, Game.CursorPos);
-                CastQe(soilderTarget, "Null");
+                CastQe(soldierTarget, "Null");
             }
             else
             {

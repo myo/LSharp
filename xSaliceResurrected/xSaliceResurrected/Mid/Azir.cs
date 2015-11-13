@@ -345,7 +345,7 @@ namespace xSaliceResurrected.Mid
         {
             Vector3 wVec = Player.ServerPosition + Vector3.Normalize(Game.CursorPos - Player.ServerPosition) * W.Range;
 
-            if ((E.IsReady() || ESpell.State == SpellState.Surpressed))
+            if ((E.IsReady()))
             {
                 if (soldierCount() < 1 && W.IsReady())
                     W.Cast(wVec);
@@ -357,11 +357,15 @@ namespace xSaliceResurrected.Mid
 
                 var nearSlave = GetNearestSoldierToMouse();
 
-                if ((E.IsReady() || ESpell.State == SpellState.Surpressed) &&
+                if (E.IsReady() &&
                     Player.Distance(Game.CursorPos) > Game.CursorPos.Distance(nearSlave.Position))
                 {
-                    E.Cast(nearSlave.Position);
+                    E.Cast(nearSlave.Position.Randomize(-30, 30));
                     E.LastCastAttemptT = Utils.TickCount + 250;
+                }
+                else if (Q.IsReady())
+                {
+                    Q.Cast(Game.CursorPos);
                 }
                 else if (W.IsReady())
                 {

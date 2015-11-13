@@ -27,18 +27,9 @@ namespace xSaliceResurrected
             Spellbook.OnStopCast += SpellbookOnOnStopCast;
             Obj_AI_Hero.OnDamage += ObjAiHeroOnOnDamage;
 
-            if (menu.Item("OrbwalkingMode").GetValue<StringList>().SelectedIndex == 1 || Player.ChampionName.ToLower() == "azir")
-            {
-                Orbwalking.AfterAttack += AfterAttackEvent;
-                Orbwalking.BeforeAttack += BeforeAttackEvent;
-                Orbwalking.OnAttack += OnAttack;
-            }
-            else
-            {
-                xSaliceWalker.AfterAttack += AfterAttackEvent;
-                xSaliceWalker.BeforeAttack += BeforeAttackEvent;
-                xSaliceWalker.OnAttack += OnAttack;
-            }
+            Orbwalking.AfterAttack += AfterAttackEvent;
+            Orbwalking.BeforeAttack += BeforeAttackEvent;
+            Orbwalking.OnAttack += OnAttack;
 
             Obj_AI_Base.OnBuffAdd += ObjAiBaseOnOnBuffAdd;
             Obj_AI_Base.OnBuffRemove += ObjAiBaseOnOnBuffRemove;
@@ -61,8 +52,7 @@ namespace xSaliceResurrected
 
         private void GameOnLoad()
         {
-            Game.PrintChat("<font color = \"#FFB6C1\">xSalice's Ressurected AIO</font> by <font color = \"#00FFFF\">xSalice</font>");
-            Game.PrintChat("<font color = \"#87CEEB\">Feel free to donate via Paypal to:</font> <font color = \"#FFFF00\">xSalicez@gmail.com</font>");
+            Game.PrintChat("<font color = \"#FFB6C1\">xSalice's Ressurected AIO</font> by <font color = \"#00FFFF\">xSalice</font>, imsosharp version");
 
             menu = new Menu(Player.ChampionName, Player.ChampionName, true);
 
@@ -70,7 +60,6 @@ namespace xSaliceResurrected
             menu.AddSubMenu(new Menu("General", "General"));
             menu.SubMenu("General").AddItem(new MenuItem("Author", "By xSalice"));
             menu.SubMenu("General").AddItem(new MenuItem("Paypal", "Donate: xSalicez@gmail.com"));
-            menu.SubMenu("General").AddItem(new MenuItem("OrbwalkingMode", "Mode (Require f5 reload): ").SetValue(new StringList(new[] { "xSaliceWalker", "Common" })));
 
             //Target selector
             var targetSelectorMenu = new Menu("Target Selector", "Target Selector");
@@ -86,11 +75,7 @@ namespace xSaliceResurrected
             else
             {
                 menu.AddSubMenu(OrbwalkerMenu);
-
-                if (menu.Item("OrbwalkingMode").GetValue<StringList>().SelectedIndex == 1)
-                    Orbwalker = new Orbwalking.Orbwalker(OrbwalkerMenu);
-                else
-                    xSaliceWalker.AddToMenu(OrbwalkerMenu);
+                Orbwalker = new Orbwalking.Orbwalker(OrbwalkerMenu);
             }
 
             //Item Menu

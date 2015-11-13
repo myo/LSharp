@@ -22,10 +22,7 @@ namespace xSaliceResurrected.Managers
 
             var count = Soldiers.Count(obj => obj.Position.Distance(unit.Position) < 350);
 
-            if (count > 1)
-                return dmg + dmg * (count - 1);
-
-            return dmg;
+            return dmg * count;
         }
 
         public static bool InSoldierAttackRange(AttackableUnit target)

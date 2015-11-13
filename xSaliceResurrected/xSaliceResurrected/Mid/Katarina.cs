@@ -89,7 +89,7 @@ namespace xSaliceResurrected.Mid
                 killSteal.AddItem(new MenuItem("smartKS", "Use Smart KS System", true).SetValue(true));
                 killSteal.AddItem(new MenuItem("wardKs", "Use Jump KS", true).SetValue(true));
                 killSteal.AddItem(new MenuItem("rKS", "Use R for KS", true).SetValue(true));
-                killSteal.AddItem(new MenuItem("rCancel", "NO R Cancel for KS", true).SetValue(false));
+                killSteal.AddItem(new MenuItem("rCancel", "NO R Cancel for KS", true).SetValue(true));
                 killSteal.AddItem(new MenuItem("KS_With_E", "Don't KS with E Toggle!", true).SetValue(new KeyBind("H".ToCharArray()[0], KeyBindType.Toggle)));
                 //add to menu
                 menu.AddSubMenu(killSteal);

@@ -48,6 +48,7 @@ namespace xSaliceResurrected.ADC
                 combo.AddItem(new MenuItem("UseWCombo", "Use W", true).SetValue(true));
                 combo.AddItem(new MenuItem("UseECombo", "Use E", true).SetValue(true));
                 combo.AddItem(new MenuItem("UseRCombo", "Use R", true).SetValue(true));
+                combo.AddItem(new MenuItem("NoMovementDuringW", "Dont Move During W").SetValue(true));
                 combo.AddItem(new MenuItem("ComboR_Limit", "Limit R Stack", true).SetValue(new Slider(7, 0, 7)));
                 combo.AddSubMenu(HitChanceManager.AddHitChanceMenuCombo(true, false, true, true));
                 menu.AddSubMenu(combo);
@@ -191,7 +192,7 @@ namespace xSaliceResurrected.ADC
             if (useW && W.IsReady())
             {
                 var target = TargetSelector.GetTarget(Player.AttackRange + new[] { 130 , 150 , 170 , 190 , 210 }[W.Level - 1], TargetSelector.DamageType.Magical);
-                if (target.IsValidTarget(Player.AttackRange + new[] { 130, 150, 170, 190, 210 }[W.Level - 1]))
+                if (target.IsValidTarget(Player.AttackRange + new[] { 90, 120, 150, 180, 210 }[W.Level - 1]))
                     W.Cast();
             }
         }
@@ -268,6 +269,9 @@ namespace xSaliceResurrected.ADC
         {
             //check if player is dead
             if (Player.IsDead) return;
+
+            //no aa canceling option
+            Orbwalker.SetMovement(menu.Item("NoMovementDuringW").GetValue<bool>() && Player.HasBuff("KogMawBioArcaneBarrage") && ObjectManager.Get<Obj_AI_Hero>().Count(h=>h.IsEnemy && !h.IsDead && h.IsVisible && h.CanAttack && h.Distance(Player) < h.AttackRange) == 0);
 
             if (menu.Item("smartKS", true).GetValue<bool>())
                 CheckKs();

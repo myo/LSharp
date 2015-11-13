@@ -114,9 +114,9 @@ namespace xSaliceResurrected.Managers
             //Mode 3 = flask
             ItemList.Add(new ItemManager
             {
-                ActiveId = ItemData.Crystalline_Flask.Id,
-                ActiveName = "Crystaline Flask",
-                BuffName = "ItemCrystalFlask",
+                ActiveId = ItemData.Refillable_Potion.Id,
+                ActiveName = "Refillable_Potion",
+                BuffName = "ItemRefillablePotion",
                 Range = int.MaxValue,
                 Mode = 3,
             });
@@ -129,16 +129,6 @@ namespace xSaliceResurrected.Managers
                 BuffName = "RegenerationPotion",
                 Range = int.MaxValue,
                 Mode = 4,
-            });
-
-            //mode 5 = mana
-            ItemList.Add(new ItemManager
-            {
-                ActiveId = ItemData.Mana_Potion.Id,
-                ActiveName = "Mana Potion",
-                BuffName = "FlaskOfCrystalWater",
-                Range = int.MaxValue,
-                Mode = 5,
             });
 
         }

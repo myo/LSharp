@@ -84,7 +84,6 @@
     <Compile Include="PluginLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Utilities\CustomPermaMenu.cs" />
-    <Compile Include="Utilities\xSaliceWalker.cs" />
     <Compile Include="Utilities\Util.cs" />
     <Compile Include="Utilities\WardJumper.cs" />
   </ItemGroup>

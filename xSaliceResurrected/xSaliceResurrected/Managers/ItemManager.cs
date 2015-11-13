@@ -169,17 +169,8 @@ namespace xSaliceResurrected.Managers
                 }
                 _myMenu.AddSubMenu(summoners);
             }
-
-            if (OrbwalkManager.CurrentOrbwalker == 1)
-            {
                 Orbwalking.AfterAttack += AfterAttack;
                 Orbwalking.OnAttack += OnAttack;
-            }
-            else
-            {
-                xSaliceWalker.AfterAttack += AfterAttack;
-                xSaliceWalker.OnAttack += OnAttack;
-            }
 
             Obj_AI_Base.OnProcessSpellCast += SpellbookOnOnCastSpell;
             Game.OnUpdate += Game_OnGameUpdate;

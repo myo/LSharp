@@ -23,11 +23,11 @@ namespace xSaliceResurrected.Mid
         private void LoadSpells()
         {
             //intalize spell
-            SpellManager.Q = new Spell(SpellSlot.Q, 950);
-            SpellManager.Q2 = new Spell(SpellSlot.Q, 2000);
+            SpellManager.Q = new Spell(SpellSlot.Q, 875);
+            SpellManager.Q2 = new Spell(SpellSlot.Q, 875);
             SpellManager.W = new Spell(SpellSlot.W, 450);
-            SpellManager.W2 = new Spell(SpellSlot.W, 600);
-            SpellManager.E = new Spell(SpellSlot.E, 2000);
+            SpellManager.W2 = new Spell(SpellSlot.W, 800);
+            SpellManager.E = new Spell(SpellSlot.E, 1100);
             SpellManager.R = new Spell(SpellSlot.R, 450);
             SpellManager.R2 = new Spell(SpellSlot.R);
 
@@ -347,32 +347,18 @@ namespace xSaliceResurrected.Mid
 
             if ((E.IsReady()))
             {
-                if (soldierCount() < 1 && W.IsReady())
-                    W.Cast(wVec);
-                else if (soldierCount() < 1 && !W.IsReady())
-                    return;
-
-                if (GetNearestSoldierToMouse() == null)
-                    return;
-
-                var nearSlave = GetNearestSoldierToMouse();
-
-                if (E.IsReady() &&
-                    Player.Distance(Game.CursorPos) > Game.CursorPos.Distance(nearSlave.Position))
+                if (W.IsReady())
                 {
-                    E.Cast(nearSlave.Position.Randomize(-30, 30));
-                    E.LastCastAttemptT = Utils.TickCount + 250;
+                    W.Cast(wVec);
+                    return;
                 }
-                else if (Q.IsReady())
+                if (Q.IsReady() && GetNearestSoldierToMouse().Position.Distance(Game.CursorPos) > 300)
                 {
                     Q.Cast(Game.CursorPos);
+                    return;
                 }
-                else if (W.IsReady())
-                {
-                    W.Cast(wVec);
-                }
+                E.Cast();
             }
-            
         }
 
         private GameObject GetNearestSoldierToMouse()

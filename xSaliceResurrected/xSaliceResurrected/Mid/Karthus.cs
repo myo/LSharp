@@ -44,7 +44,7 @@ namespace xSaliceResurrected.Mid
             //Keys
             var keys = new Menu("Keys", "Keys");
             {
-                keys.AddItem(new MenuItem("ComboActive", "Combo!", true).SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
+                keys.AddItem(new MenuItem("ComboActive", "Combo!", true).SetValue(new KeyBind(32, KeyBindType.Press)));
                 keys.AddItem(new MenuItem("HarassActive", "Harass!", true).SetValue(new KeyBind("S".ToCharArray()[0], KeyBindType.Press)));
                 keys.AddItem(new MenuItem("HarassActiveT", "Harass (toggle)!", true).SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
                 keys.AddItem(new MenuItem("wTar", "Cast W On Selected", true).SetValue(new KeyBind("W".ToCharArray()[0], KeyBindType.Press)));

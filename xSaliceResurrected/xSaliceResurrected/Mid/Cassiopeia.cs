@@ -260,12 +260,14 @@ namespace xSaliceResurrected.Mid
             if (useQ && Q.IsReady() && !magicTarget.HasBuffOfType(BuffType.Poison))
             {
                 Q.CastIfHitchanceEquals(magicTarget, HitChance.High);
+                return;
             }
             if (useW && W.IsReady() && !magicTarget.HasBuffOfType(BuffType.Poison))
             {
                 if (!Q.IsReady())
                 {
                     W.CastIfHitchanceEquals(magicTarget, HitChance.VeryHigh);
+                    return;
                 }
             }
         }

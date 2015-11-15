@@ -230,6 +230,7 @@ namespace xSaliceResurrected.Mid
 
         private void UseSpells(bool useQ, bool useW, bool useE, bool useR, string source)
         {
+            var magicTarget = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Physical);
             if (source == "Harass" && !ManaManager.HasMana("Harass"))
                 return;
 
@@ -256,27 +257,16 @@ namespace xSaliceResurrected.Mid
                 Cast_R(source);
             if (useE && E.IsReady())
                 Cast_E();
-            if (useQ && Q.IsReady())
+            if (useQ && Q.IsReady() && !magicTarget.HasBuffOfType(BuffType.Poison))
             {
-                SpellCastManager.CastBasicSkillShot(Q, Q.Range, TargetSelector.DamageType.Magical, HitChanceManager.GetQHitChance(source));
+                Q.CastIfHitchanceEquals(magicTarget, HitChance.High);
             }
-            if (useW && W.IsReady())
+            if (useW && W.IsReady() && !magicTarget.HasBuffOfType(BuffType.Poison))
             {
-                if (menu.Item("OnlyWIfnotPoison", true).GetValue<bool>())
+                if (!Q.IsReady())
                 {
-                    var target = TargetSelector.GetTarget(W.Range, TargetSelector.DamageType.Magical);
-                    if (target.IsValidTarget(W.Range))
-                    {
-                        if (!Q.IsReady() && QSuccessfullyCasted(target))
-                        {
-                            SpellCastManager.CastBasicSkillShot(W, W.Range, TargetSelector.DamageType.Magical,
-                                HitChanceManager.GetWHitChance(source));
-
-                        }
-                    }
+                    W.CastIfHitchanceEquals(magicTarget, HitChance.VeryHigh);
                 }
-                else
-                    SpellCastManager.CastBasicSkillShot(W, W.Range, TargetSelector.DamageType.Magical, HitChanceManager.GetWHitChance(source));
             }
         }
 

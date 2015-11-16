@@ -32,15 +32,15 @@ namespace xSaliceResurrected.Managers
             _menuHarass = new Menu("Hitchance", "Hitchance");
 
             if (q)
-                _menuHarass.AddItem(new MenuItem("qHitHarass", "Q HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 2)));
+                _menuHarass.AddItem(new MenuItem("qHitHarass", "Q HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 3)));
             if (w)
-                _menuHarass.AddItem(new MenuItem("wHitHarass", "W HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 2)));
+                _menuHarass.AddItem(new MenuItem("wHitHarass", "W HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 3)));
             if (e)
-                _menuHarass.AddItem(new MenuItem("eHitHarass", "E HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 2)));
+                _menuHarass.AddItem(new MenuItem("eHitHarass", "E HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 3)));
             if (r)
-                _menuHarass.AddItem(new MenuItem("rHitHarass", "R HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 2)));
+                _menuHarass.AddItem(new MenuItem("rHitHarass", "R HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 3)));
             if (_qe)
-                _menuHarass.AddItem(new MenuItem("qeHitHarass", "QE HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 2)));
+                _menuHarass.AddItem(new MenuItem("qeHitHarass", "QE HitChance", true).SetValue(new StringList(new[] { "Low", "Med", "High", "Very High" }, 3)));
             return _menuHarass;
         }
 

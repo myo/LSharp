@@ -269,6 +269,8 @@ namespace xSaliceResurrected.Mid
 
                 if (!target.IsValidTarget(Q.Range))
                     return;
+                if (target.HasBuff("AkaliMota"))
+                    return;
 
                 if (CheckMark(Q.Range) != null)
                     target = CheckMark(Q.Range);

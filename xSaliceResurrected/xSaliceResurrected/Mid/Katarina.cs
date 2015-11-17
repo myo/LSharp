@@ -59,6 +59,7 @@ namespace xSaliceResurrected.Mid
                 combo.AddItem(new MenuItem("smartE", "Smart E with R CD ", true).SetValue(false));
                 combo.AddItem(new MenuItem("UseRCombo", "Use R", true).SetValue(true));
                 combo.AddItem(new MenuItem("comboMode", "Mode", true).SetValue(new StringList(new[] { "QEW", "EQW" })));
+                combo.AddItem(new MenuItem("disableaa", "Disable AA").SetValue(true));
                 //add to menu
                 menu.AddSubMenu(combo);
             }
@@ -624,6 +625,14 @@ namespace xSaliceResurrected.Mid
             if (castedSlot == SpellSlot.R)
             {
                 R.LastCastAttemptT = Utils.TickCount;
+            }
+        }
+
+        protected override void ObjAiHeroOnOnIssueOrder(Obj_AI_Base sender, GameObjectIssueOrderEventArgs args)
+        {
+            if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
+            {
+                args.Process = false;
             }
         }
 

@@ -630,6 +630,10 @@ namespace xSaliceResurrected.Mid
 
         protected override void ObjAiHeroOnOnIssueOrder(Obj_AI_Base sender, GameObjectIssueOrderEventArgs args)
         {
+            if (ObjectManager.Player.IsCastingInterruptableSpell())
+            {
+                args.Process = false;
+            }
             if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
                 args.Process = false;

@@ -74,7 +74,7 @@ namespace xSaliceResurrected
                         _loaded = true;
                         break;
                     case "fiora":
-                        new Fiora();
+                        Game.PrintChat("xSalice Religion AIO: Lilith sux but so does this fiora so use trees");
                         _loaded = true;
                         break;
                     case "irelia":

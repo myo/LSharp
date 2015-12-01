@@ -516,10 +516,10 @@ namespace xSaliceResurrected.ADC
 
         protected override void BeforeAttack(Orbwalking.BeforeAttackEventArgs args)
         {
-            if (UltActive() && TumbleActive() && ObjectManager.Get<Obj_AI_Hero>().Any(h => h.IsEnemy && h.IsValidTarget() && h.IsMelee && h.Distance(ObjectManager.Player) < 325))
+           /* if (UltActive() && TumbleActive() && ObjectManager.Get<Obj_AI_Hero>().Any(h => h.IsEnemy && h.IsValidTarget() && h.IsMelee && h.Distance(ObjectManager.Player) < 325))
             {
                 args.Process = false;
-            }
+            }*/ //#TODO GET ACTUAL INVI NAME ZZZ
         }
 
         private void Farm()

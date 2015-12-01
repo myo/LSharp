@@ -175,18 +175,40 @@ namespace xSaliceResurrected.ADC
                     .FirstOrDefault(
                         m =>
                             m.Team == GameObjectTeam.Neutral && m.Distance(ObjectManager.Player) < 550 &&
-                            m.Name.Contains("SRU_"));
+                            m.Name.Contains("SRU_") && !m.Name.Contains("Mini") && !m.Name.Contains("Dragon") && !m.Name.Contains("Baron"));
             if (mob != null)
             {
+                if (Q.IsReady())
+                {
+                    Q.Cast(GetJungleSafeTumblePos(mob));
+                }
                 AttemptSimpleCondemn(mob);
             }
         }
 
-        private Vector3 GetSafeTumblePos(Obj_AI_Hero target)
+        private Vector3 GetJungleSafeTumblePos(Obj_AI_Minion target)
         {
             var cursorPos = Game.CursorPos;
             if (IsSafeTumblePos(cursorPos)) return cursorPos;
 
+            if (!target.IsValidTarget()) return Vector3.Zero;
+
+            var targetPosition = target.ServerPosition;
+
+            var myTumbleRangeCircle =
+                new Geometry.Circle(ObjectManager.Player.ServerPosition.To2D(), 300).ToPolygon().ToClipperPath();
+
+            var goodCandidates = from p in myTumbleRangeCircle
+                                 select new Vector2(p.X, p.Y).To3D() into v3
+                                 let dist = v3.Distance(targetPosition)
+                                 where dist > menu.Item("QMinDist", true).GetValue<Slider>().Value && dist < 500
+                                 select v3;
+
+            return goodCandidates.OrderByDescending(candidate => candidate.Distance(cursorPos)).FirstOrDefault();
+        }
+
+        private Vector3 GetSafeTumblePos(Obj_AI_Hero target)
+        {
             if (!target.IsValidTarget()) return Vector3.Zero;
 
             var targetPosition = target.ServerPosition;

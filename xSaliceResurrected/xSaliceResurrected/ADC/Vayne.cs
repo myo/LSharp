@@ -206,7 +206,7 @@ namespace xSaliceResurrected.ADC
             return goodCandidates.OrderByDescending(candidate => candidate.Distance(cursorPos)).FirstOrDefault();
         }
 
-        private static void AttemptSimpleCondemn(Obj_AI_Base target)
+        private void AttemptSimpleCondemn(Obj_AI_Base target)
         {
             if (E.IsReady() && target.IsValidTarget(550) && target.ServerPosition.Extend(ObjectManager.Player.ServerPosition, -420).IsWall() ||
                 target.ServerPosition.Extend(ObjectManager.Player.ServerPosition, -210).IsWall())
@@ -221,11 +221,11 @@ namespace xSaliceResurrected.ADC
                 ObjectManager.Get<Obj_AI_Hero>()
                     .Any(e => e.IsEnemy && e.Distance(position) < menu.Item("QMinDist", true).GetValue<Slider>().Value);
         }
-        private static Obj_AI_Hero GetEnemyWith2W()
+        private Obj_AI_Hero GetEnemyWith2W()
         {
             return ObjectManager.Get<Obj_AI_Hero>().FirstOrDefault(h => GetWBuffCount(h) == 2);
         }
-        private static int GetWBuffCount(Obj_AI_Hero target)
+        private int GetWBuffCount(Obj_AI_Hero target)
         {
             var wBuff = target.Buffs.FirstOrDefault(b => b.Name == "vaynesilvereddebuff");
             return wBuff != null ? wBuff.Count : 0;
@@ -237,12 +237,12 @@ namespace xSaliceResurrected.ADC
             return NavMesh.GetCollisionFlags(pos).HasFlag(CollisionFlags.Wall) ||
                 (NavMesh.GetCollisionFlags(pos).HasFlag(CollisionFlags.Building));
         }
-        public static bool UltActive()
+        public bool UltActive()
         {
             return ObjectManager.Player.Buffs.Any(b => b.Name.ToLower().Contains("vayneinquisition"));
         }
 
-        public static bool TumbleActive()
+        public bool TumbleActive()
         {
             return ObjectManager.Player.Buffs.Any(b => b.Name.ToLower().Contains("vaynetumblebonus"));
         }

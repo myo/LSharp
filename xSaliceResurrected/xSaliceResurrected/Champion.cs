@@ -56,16 +56,6 @@ namespace xSaliceResurrected
 
             menu = new Menu(Player.ChampionName, Player.ChampionName, true);
 
-            //Info
-            menu.AddSubMenu(new Menu("General", "General"));
-            menu.SubMenu("General").AddItem(new MenuItem("Author", "By xSalice"));
-            menu.SubMenu("General").AddItem(new MenuItem("Paypal", "Donate: xSalicez@gmail.com"));
-
-            //Target selector
-            var targetSelectorMenu = new Menu("Target Selector", "Target Selector");
-            TargetSelector.AddToMenu(targetSelectorMenu);
-            menu.AddSubMenu(targetSelectorMenu);
-
             //Orbwalker submenu
             if (Player.ChampionName.ToLower() == "azir")
             {
@@ -77,14 +67,14 @@ namespace xSaliceResurrected
                 menu.AddSubMenu(OrbwalkerMenu);
                 Orbwalker = new Orbwalking.Orbwalker(OrbwalkerMenu);
             }
+            new PluginLoader();
 
             //Item Menu
             var itemMenu = new Menu("Items and Summoners", "Items");
             ItemManager.AddToMenu(itemMenu);
             menu.AddSubMenu(itemMenu);
-            
+
             menu.AddToMainMenu();
-            new PluginLoader();
 
             //debug
             //Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCastEvent;

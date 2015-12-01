@@ -45,9 +45,9 @@ namespace xSaliceResurrected.ADC
                 menu.AddSubMenu(key);
             }
 
-            var spellMenu = new Menu("SpellMenu", "SpellMenu");
+            var spellMenu = new Menu("Spell Config", "SpellMenu");
             {
-                var qMenu = new Menu("QMenu", "QMenu");
+                var qMenu = new Menu("Q Config", "QMenu");
                 {
                     qMenu.AddItem(
                         new MenuItem("QMode", "Q Mode: ", true).SetValue(
@@ -62,7 +62,7 @@ namespace xSaliceResurrected.ADC
                     spellMenu.AddSubMenu(qMenu);
                 }
 
-                var eMenu = new Menu("EMenu", "EMenu");
+                var eMenu = new Menu("E Config", "EMenu");
                 {
                     eMenu.AddItem(
                         new MenuItem("EMode", "E Mode", true).SetValue(

@@ -19,7 +19,7 @@ namespace xSaliceResurrected
         {
             if (!_loaded)
             {
-                var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/xSalice/LSharp/master/xSaliceResurrected/version.txt");
+                var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/myo/LSharp/master/xSaliceResurrected/version.txt");
 
                 using (var response = webRequest.GetResponse())
                 using (var content = response.GetResponseStream())

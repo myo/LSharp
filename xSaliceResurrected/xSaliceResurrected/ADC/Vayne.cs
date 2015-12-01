@@ -237,7 +237,7 @@ namespace xSaliceResurrected.ADC
         private bool IsSafeTumblePos(Vector3 position)
         {
             return
-                ObjectManager.Get<Obj_AI_Hero>()
+                !ObjectManager.Get<Obj_AI_Hero>()
                     .Any(e => e.IsEnemy && e.Distance(position) < menu.Item("QMinDist", true).GetValue<Slider>().Value);
         }
         private Obj_AI_Hero GetEnemyWith2W()

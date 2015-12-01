@@ -21,16 +21,13 @@ namespace xSaliceResurrected.ADC
 
         private void SetSpells()
         {
-            SpellManager.Q = new Spell(SpellSlot.Q);
+            SpellManager.Q = new Spell(SpellSlot.Q, 300);
 
-            SpellManager.W = new Spell(SpellSlot.W, 1200);
-            SpellManager.W.SetSkillshot(0.25f, 70f, 1500f, true, SkillshotType.SkillshotCone);
+            SpellManager.W = new Spell(SpellSlot.W);
 
-            SpellManager.E = new Spell(SpellSlot.E);
+            SpellManager.E = new Spell(SpellSlot.E, 550);
 
-            SpellManager.R = new Spell(SpellSlot.R, 20000);
-            SpellManager.R.SetSkillshot(250f, 130f, 1600f, false, SkillshotType.SkillshotLine);
-
+            SpellManager.R = new Spell(SpellSlot.R);
         }
 
         private void LoadMenu()

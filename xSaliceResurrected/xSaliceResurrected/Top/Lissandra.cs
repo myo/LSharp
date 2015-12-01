@@ -6,6 +6,7 @@ using SharpDX;
 using xSaliceResurrected.Managers;
 using xSaliceResurrected.Utilities;
 using Color = System.Drawing.Color;
+using Geometry = LeagueSharp.Common.Geometry;
 
 namespace xSaliceResurrected.Top
 {

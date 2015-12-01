@@ -153,8 +153,6 @@ namespace xSaliceResurrected.ADC
                 customMenu.AddItem(myCust.AddToMenu("Harass(T) Active: ", "HarassActiveT"));
                 customMenu.AddItem(myCust.AddToMenu("JungleClear Active: ", "JungleClearActiveT"));
                 customMenu.AddItem(myCust.AddToMenu("Laneclear Active: ", "LaneClearActive"));
-                customMenu.AddItem(myCust.AddToMenu("Q Harass", "UseQHarass"));
-                customMenu.AddItem(myCust.AddToMenu("E Harass", "UseEHarass"));
                 menu.AddSubMenu(customMenu);
             }
         }

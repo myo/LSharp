@@ -187,6 +187,8 @@ namespace xSaliceResurrected.ADC
             var cursorPos = Game.CursorPos;
             if (IsSafeTumblePos(cursorPos)) return cursorPos;
 
+            if (!target.IsValidTarget()) return Vector3.Zero;
+
             var targetPosition = target.ServerPosition;
 
             var myTumbleRangeCircle =
@@ -458,12 +460,12 @@ namespace xSaliceResurrected.ADC
 
         protected override void AfterAttack(AttackableUnit unit, AttackableUnit target)
         {
-            if ((menu.Item("UseQCombo", true).GetValue<bool>() &&
+            if (target is Obj_AI_Hero && (menu.Item("UseQCombo", true).GetValue<bool>() &&
                  menu.Item("ComboActive", true).GetValue<KeyBind>().Active))
             {
                 if (Q.IsReady())
                 {
-                    Q.Cast(GetSafeTumblePos(TargetSelector.GetTarget(580, TargetSelector.DamageType.Physical)));
+                    Q.Cast(GetSafeTumblePos((Obj_AI_Hero) target));
                 }
                 if (E.IsReady())
                 {

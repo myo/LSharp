@@ -67,14 +67,14 @@ namespace xSaliceResurrected
                 menu.AddSubMenu(OrbwalkerMenu);
                 Orbwalker = new Orbwalking.Orbwalker(OrbwalkerMenu);
             }
-            new PluginLoader();
 
             //Item Menu
-            var itemMenu = new Menu("Items and Summoners", "Items");
+            var itemMenu = new Menu("Activator", "Items");
             ItemManager.AddToMenu(itemMenu);
             menu.AddSubMenu(itemMenu);
 
             menu.AddToMainMenu();
+            new PluginLoader();
 
             //debug
             //Obj_AI_Base.OnProcessSpellCast += Obj_AI_Base_OnProcessSpellCastEvent;

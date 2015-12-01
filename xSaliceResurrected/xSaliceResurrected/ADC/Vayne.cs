@@ -32,7 +32,7 @@ namespace xSaliceResurrected.ADC
 
         private void LoadMenu()
         {
-            var key = new Menu("Key", "Key");
+            var key = new Menu("Keys", "Key");
             {
                 key.AddItem(new MenuItem("ComboActive", "Combo!", true).SetValue(new KeyBind(32, KeyBindType.Press)));
                 key.AddItem(new MenuItem("HarassActive", "Harass!", true).SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
@@ -58,7 +58,7 @@ namespace xSaliceResurrected.ADC
                     qMenu.AddItem(new MenuItem("EQ", "Q After E", true).SetValue(false));
                     qMenu.AddItem(new MenuItem("QWall", "Enable Wall Tumble?", true).SetValue(true));
                     qMenu.AddItem(new MenuItem("QR", "Q after Ult", true).SetValue(true));
-                    qMenu.AddItem(new MenuItem("Q_Min_Stack", "Q Harass Min W Stacks", true).SetValue(new Slider(0, 0, 2)));
+                    qMenu.AddItem(new MenuItem("Q_Min_Stack", "Q Harass Min W Stacks", true).SetValue(new Slider(2, 0, 2)));
                     spellMenu.AddSubMenu(qMenu);
                 }
 

@@ -530,7 +530,7 @@ namespace xSaliceResurrected.ADC
             var useQ = menu.Item("UseQFarm", true).GetValue<bool>();
             var cursorPos = Game.CursorPos;
 
-            if (useQ && IsSafeTumblePos(cursorPos))
+            if (useQ && IsSafeTumblePos(cursorPos) && MinionManager.GetMinions(580, MinionTypes.All, MinionTeam.Enemy).Any(m => m.Health < ObjectManager.Player.GetAutoAttackDamage(m) && m.Health > 13))
             {
                 Q.Cast(cursorPos);
             }

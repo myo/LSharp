@@ -222,7 +222,7 @@ namespace xSaliceResurrected.ADC
                 where dist > menu.Item("QMinDist", true).GetValue<Slider>().Value && dist < 500
                 select v3;
 
-            return goodCandidates.OrderByDescending(candidate => candidate.Distance(cursorPos)).FirstOrDefault();
+            return goodCandidates.OrderBy(candidate => candidate.Distance(Game.CursorPos)).FirstOrDefault();
         }
 
         private void AttemptSimpleCondemn(Obj_AI_Base target)

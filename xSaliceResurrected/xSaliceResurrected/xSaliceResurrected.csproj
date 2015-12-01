@@ -43,6 +43,7 @@
     <Compile Include="ADC\Ezreal.cs" />
     <Compile Include="ADC\KogMaw.cs" />
     <Compile Include="ADC\Lucian.cs" />
+    <Compile Include="ADC\Vayne.cs" />
     <Compile Include="Managers\AzirManager.cs" />
     <Compile Include="Managers\OrbwalkManager.cs" />
     <Compile Include="Mid\Ahri.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="PluginLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Utilities\CustomPermaMenu.cs" />
+    <Compile Include="Utilities\Geometry.cs" />
     <Compile Include="Utilities\Util.cs" />
     <Compile Include="Utilities\WardJumper.cs" />
   </ItemGroup>

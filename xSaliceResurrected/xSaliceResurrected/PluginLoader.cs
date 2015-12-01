@@ -117,6 +117,10 @@ namespace xSaliceResurrected
                         new Syndra();
                         _loaded = true;
                         break;
+                    case "vayne":
+                        new Vayne();
+                        _loaded = true;
+                        break;
                     case "viktor":
                         new Viktor();
                         _loaded = true;

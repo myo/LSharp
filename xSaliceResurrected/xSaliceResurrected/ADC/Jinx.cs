@@ -166,7 +166,7 @@ namespace xSaliceResurrected.ADC
         {
             if (menu.Item("UseQCombo", true).GetValue<bool>() && Q.IsReady() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
-                if (ObjectManager.Player.CountEnemiesInRange(350) == 0 && ObjectManager.Player.AttackRange < 600)
+                if (ObjectManager.Player.CountEnemiesInRange(450) == 0 && ObjectManager.Player.AttackRange < 600)
                 {
                     return;
                 }

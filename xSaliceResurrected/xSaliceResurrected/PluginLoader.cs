@@ -81,6 +81,10 @@ namespace xSaliceResurrected
                         new Irelia();
                         _loaded = true;
                         break;
+                    case "jinx":
+                        new Jinx();
+                        _loaded = true;
+                        break;
                     case "karthus":
                         new Karthus();
                         _loaded = true;

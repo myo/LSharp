@@ -41,6 +41,7 @@
     <Compile Include="ADC\Ashe.cs" />
     <Compile Include="ADC\Corki.cs" />
     <Compile Include="ADC\Ezreal.cs" />
+    <Compile Include="ADC\Jinx.cs" />
     <Compile Include="ADC\KogMaw.cs" />
     <Compile Include="ADC\Lucian.cs" />
     <Compile Include="ADC\Vayne.cs" />

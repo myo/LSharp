@@ -634,7 +634,7 @@ namespace xSaliceResurrected.Mid
             {
                 args.Process = false;
             }
-            if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
+            if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo && ObjectManager.Get<Obj_AI_Hero>().Any(h => h.IsEnemy && E.IsInRange(h)))
             {
                 args.Process = false;
             }

@@ -489,14 +489,6 @@ namespace xSaliceResurrected.ADC
                 {
                     Q.Cast(GetSafeTumblePos((Obj_AI_Hero) target));
                 }
-                if (E.IsReady())
-                {
-                    var condemnable = GetCondemnableTarget();
-                    if (condemnable != null)
-                    {
-                        E.Cast(condemnable);
-                    }
-                }
             }
             if ((menu.Item("HarassActive", true).GetValue<KeyBind>().Active && menu.Item("UseQHarass", true).GetValue<bool>()))
             {
@@ -545,6 +537,13 @@ namespace xSaliceResurrected.ADC
             if (menu.Item("JungleClearActiveT", true).GetValue<KeyBind>().Active &&
                 Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.LaneClear)
                 JungleClear();
+            if (E.IsReady())
+            {
+                foreach (var en in ObjectManager.Get<Obj_AI_Hero>().Where(h => h.IsEnemy && h.IsValidTarget(550f)))
+                {
+                    AttemptSimpleCondemn(en);
+                }
+            }
         }
 
         protected override void Interrupter_OnPosibleToInterrupt(Obj_AI_Hero unit, Interrupter2.InterruptableTargetEventArgs spell)

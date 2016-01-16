@@ -562,7 +562,7 @@ namespace xSaliceResurrected.Mid
 
         private void CancelUlt(Obj_AI_Hero target)
         {
-            if (Player.IsChannelingImportantSpell() || Player.HasBuff("katarinarsound", true))
+            if (Player.IsChannelingImportantSpell() || Player.HasBuff("katarinarsound"))
             {
                 Player.IssueOrder(GameObjectOrder.MoveTo, target.ServerPosition);
                 R.LastCastAttemptT = 0;
@@ -630,11 +630,11 @@ namespace xSaliceResurrected.Mid
 
         protected override void ObjAiHeroOnOnIssueOrder(Obj_AI_Base sender, GameObjectIssueOrderEventArgs args)
         {
-            if (ObjectManager.Player.IsCastingInterruptableSpell())
+            if (ObjectManager.Player.IsCastingInterruptableSpell() && ObjectManager.Get<Obj_AI_Hero>().Any(h => h.IsEnemy && h.Health > 1 && R.IsInRange(h)))
             {
                 args.Process = false;
             }
-            if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo && ObjectManager.Get<Obj_AI_Hero>().Any(h => h.IsEnemy && E.IsInRange(h)))
+            if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
                 args.Process = false;
             }

@@ -634,6 +634,10 @@ namespace xSaliceResurrected.Mid
             {
                 args.Process = false;
             }
+            else
+            {
+                Player.IssueOrder(GameObjectOrder.MoveTo, Player.ServerPosition.Randomize(0, 800));
+            }
             if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
                 args.Process = false;

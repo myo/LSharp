@@ -222,14 +222,14 @@ namespace xSaliceResurrected.Mid
 
             if (menu.Item("QAARange", true).GetValue<bool>())
             {
-                if (useQ && target != null && Q.IsReady() && Player.Distance(target) <= Player.AttackRange) // Q only in AA range for guaranteed AutoAttack
+                if (useQ && target != null && Q.IsReady() && Player.ServerPosition.Distance(target.ServerPosition) <= Player.AttackRange) // Q only in AA range for guaranteed AutoAttack
                 {
                     Q.Cast(target);
                     return;
                 }
             }
 
-            else if (useQ && Q.IsReady() && Player.Distance(target) <= Q.Range)
+            else if (useQ && Q.IsReady() && Player.ServerPosition.Distance(target.ServerPosition) <= Q.Range)
             {
                 Q.Cast(target);
                 return;

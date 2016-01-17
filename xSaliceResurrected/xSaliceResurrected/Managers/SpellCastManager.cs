@@ -89,7 +89,7 @@ namespace xSaliceResurrected.Managers
             var pred = Prediction.GetPrediction(target, spell.Delay);
             Geometry.Polygon.Rectangle rec1 = new Geometry.Polygon.Rectangle(vector1, vector1.Extend(pred.CastPosition, spell2.Range), spell.Width);
 
-            if (Player.Distance(target) < spell.Range)
+            if (Player.ServerPosition.Distance(target.ServerPosition) < spell.Range)
             {
                 var vector2 = pred.CastPosition.Extend(target.ServerPosition, spell2.Range*.3f);
                 Geometry.Polygon.Rectangle rec2 = new Geometry.Polygon.Rectangle(vector2, vector2.Extend(pred.CastPosition, spell2.Range), spell.Width);
@@ -265,7 +265,7 @@ namespace xSaliceResurrected.Managers
                 var pred = Prediction.GetPrediction(target, spell.Delay);
                 Geometry.Polygon.Rectangle rec1 = new Geometry.Polygon.Rectangle(vector1, vector1.Extend(pred.CastPosition, spell2.Range), spell.Width);
 
-                if (Player.Distance(target) < spell.Range)
+                if (Player.ServerPosition.Distance(target.ServerPosition) < spell.Range)
                 {
                     vector1 = pred.CastPosition.Extend(target.ServerPosition, spell2.Range * .3f);
                     Geometry.Polygon.Rectangle rec2 = new Geometry.Polygon.Rectangle(vector1, vector1.Extend(pred.CastPosition, spell2.Range), spell.Width);

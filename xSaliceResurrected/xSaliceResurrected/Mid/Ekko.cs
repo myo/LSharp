@@ -495,21 +495,21 @@ namespace xSaliceResurrected.Mid
             foreach (Obj_AI_Hero target in ObjectManager.Get<Obj_AI_Hero>().Where(x => x.IsValidTarget(Q2.Range)).OrderByDescending(GetComboDamage))
             {
                 //Q
-                if (Player.Distance(target) <= Q.Range && Qdmg(target) > target.Health && Q.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= Q.Range && Qdmg(target) > target.Health && Q.IsReady())
                 {
                     Q.Cast(target);
                     return;
                 }
 
                 //Q2
-                if (Player.Distance(target) <= Q2.Range && TotalQDmg(target) > target.Health && Q.IsReady() && Q2.GetPrediction(target).Hitchance >= HitChance.VeryHigh)
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= Q2.Range && TotalQDmg(target) > target.Health && Q.IsReady() && Q2.GetPrediction(target).Hitchance >= HitChance.VeryHigh)
                 {
                     Q2.Cast(target);
                     return;
                 }
 
                 //E
-                if (Player.Distance(target) <= E.Range + 475 && Edmg(target) > target.Health && E.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= E.Range + 475 && Edmg(target) > target.Health && E.IsReady())
                 {
                     var vec = Player.ServerPosition.Extend(target.ServerPosition, E.Range - 10);
                     E.Cast(vec);

@@ -192,10 +192,10 @@ namespace xSaliceResurrected.ADC
             {
                 var dmg = GetComboDamage(target);
 
-                if (useR && dmg > target.Health && Player.Distance(target) > menu.Item("R_Min_Range", true).GetValue<Slider>().Value)
+                if (useR && dmg > target.Health && Player.ServerPosition.Distance(target.ServerPosition) > menu.Item("R_Min_Range", true).GetValue<Slider>().Value)
                     SpellCastManager.CastBasicSkillShot(R, R.Range, TargetSelector.DamageType.Physical, HitChanceManager.GetRHitChance(source));
 
-                if (Q.IsReady() && Player.Distance(target) < 550)
+                if (Q.IsReady() && Player.ServerPosition.Distance(target.ServerPosition) < 550)
                 {
                     var qMin = menu.Item("Q_Min_Stack", true).GetValue<Slider>().Value;
 
@@ -287,14 +287,14 @@ namespace xSaliceResurrected.ADC
             foreach (Obj_AI_Hero target in ObjectManager.Get<Obj_AI_Hero>().Where(x => x.IsValidTarget(R.Range)).OrderByDescending(GetComboDamage))
             {
                 //W
-                if (Player.Distance(target) <= W.Range && Player.GetSpellDamage(target, SpellSlot.W) > target.Health && W.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= W.Range && Player.GetSpellDamage(target, SpellSlot.W) > target.Health && W.IsReady())
                 {
                     W.Cast(target);
                     return;
                 }
 
                 //R
-                if (Player.Distance(target) <= R.Range && Player.GetSpellDamage(target, SpellSlot.R) > target.Health && R.IsReady() && menu.Item("ksR", true).GetValue<bool>())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= R.Range && Player.GetSpellDamage(target, SpellSlot.R) > target.Health && R.IsReady() && menu.Item("ksR", true).GetValue<bool>())
                 {
                     R.Cast(target);
                     return;

@@ -607,7 +607,7 @@ namespace xSaliceResurrected.Mid
             foreach (Obj_AI_Hero target in ObjectManager.Get<Obj_AI_Hero>().Where(x => x.IsValidTarget(Q.Range)).OrderByDescending(GetComboDamage))
             {
                 //Q+E
-                if (Player.Distance(target) <= E.Range && Player.GetSpellDamage(target, SpellSlot.Q) + Player.GetSpellDamage(target, SpellSlot.E) > target.Health && Q.IsReady() && E.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= E.Range && Player.GetSpellDamage(target, SpellSlot.Q) + Player.GetSpellDamage(target, SpellSlot.E) > target.Health && Q.IsReady() && E.IsReady())
                 {
                     Q.Cast(target);
                     E.Cast(target);
@@ -615,7 +615,7 @@ namespace xSaliceResurrected.Mid
                 }
 
                 //Q+W
-                if (Player.Distance(target) <= Q.Range && Player.GetSpellDamage(target, SpellSlot.Q) + Player.GetSpellDamage(target, SpellSlot.W) > target.Health && Q.IsReady() && W.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= Q.Range && Player.GetSpellDamage(target, SpellSlot.Q) + Player.GetSpellDamage(target, SpellSlot.W) > target.Health && Q.IsReady() && W.IsReady())
                 {
                     Q.Cast(target);
                     W.Cast(target);
@@ -623,7 +623,7 @@ namespace xSaliceResurrected.Mid
                 }
 
                 //W+E
-                if (Player.Distance(target) <= E.Range && Player.GetSpellDamage(target, SpellSlot.W) + Player.GetSpellDamage(target, SpellSlot.E) > target.Health && W.IsReady() && E.IsReady() && QSuccessfullyCasted(target))
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= E.Range && Player.GetSpellDamage(target, SpellSlot.W) + Player.GetSpellDamage(target, SpellSlot.E) > target.Health && W.IsReady() && E.IsReady() && QSuccessfullyCasted(target))
                 {
                     W.Cast(target);
                     E.Cast(target);
@@ -631,21 +631,21 @@ namespace xSaliceResurrected.Mid
                 }
 
                 //Q
-                if (Player.Distance(target) <= Q.Range && Player.GetSpellDamage(target, SpellSlot.Q) > target.Health && Q.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= Q.Range && Player.GetSpellDamage(target, SpellSlot.Q) > target.Health && Q.IsReady())
                 {
                     Q.Cast(target);
                     return;
                 }
 
                 //W
-                if (Player.Distance(target) <= W.Range && Player.GetSpellDamage(target, SpellSlot.W) > target.Health && W.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= W.Range && Player.GetSpellDamage(target, SpellSlot.W) > target.Health && W.IsReady())
                 {
                     W.Cast(target);
                     return;
                 }
 
                 //E
-                if (Player.Distance(target) <= E.Range && Player.GetSpellDamage(target, SpellSlot.E) > target.Health && E.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= E.Range && Player.GetSpellDamage(target, SpellSlot.E) > target.Health && E.IsReady())
                 {
                     E.Cast(target);
                     return;

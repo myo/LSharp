@@ -49,6 +49,7 @@
     <Compile Include="Managers\OrbwalkManager.cs" />
     <Compile Include="Mid\Ahri.cs" />
     <Compile Include="Mid\Akali.cs" />
+    <Compile Include="Mid\Anivia.cs" />
     <Compile Include="Mid\Azir.cs" />
     <Compile Include="Mid\Cassiopeia.cs" />
     <Compile Include="Mid\Ekko.cs" />

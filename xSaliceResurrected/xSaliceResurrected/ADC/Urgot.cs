@@ -216,7 +216,7 @@ namespace xSaliceResurrected.ADC
                 SpellCastManager.CastBasicSkillShot(E, E.Range, TargetSelector.DamageType.Physical, HitChanceManager.GetEHitChance(source));
             if (useQ && Q.IsReady())
             {
-                if (Player.Distance(target) > E.Range || !E.IsReady() || !menu.Item("ForceE", true).GetValue<bool>())
+                if (Player.ServerPosition.Distance(target.ServerPosition) > E.Range || !E.IsReady() || !menu.Item("ForceE", true).GetValue<bool>())
                     Cast_Q(target, source);
             }
         }
@@ -314,7 +314,7 @@ namespace xSaliceResurrected.ADC
                             //if player is under turret
                             if (menu.Item("R_If_UnderTurret", true).GetValue<bool>())
                             {
-                                if (Util.UnderAllyTurret() && Player.Distance(target) > 300f)
+                                if (Util.UnderAllyTurret() && Player.ServerPosition.Distance(target.ServerPosition) > 300f)
                                 {
                                     R.Cast(target);
                                     return;
@@ -328,7 +328,7 @@ namespace xSaliceResurrected.ADC
 
         private void Cast_W(Obj_AI_Hero target)
         {
-            if (menu.Item("W_Always", true).GetValue<bool>() && Player.Distance(target) < Q.Range)
+            if (menu.Item("W_Always", true).GetValue<bool>() && Player.ServerPosition.Distance(target.ServerPosition) < Q.Range)
                 W.Cast();
 
             if (target.HasBuff("urgotcorrosivedebuff", true))
@@ -353,14 +353,14 @@ namespace xSaliceResurrected.ADC
             foreach (Obj_AI_Hero target in ObjectManager.Get<Obj_AI_Hero>().Where(x => x.IsValidTarget(Q2.Range)).OrderByDescending(GetComboDamage))
             {
                 //Q
-                if (Player.Distance(target) <= Q.Range && Player.GetSpellDamage(target, SpellSlot.Q) > target.Health && Q.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= Q.Range && Player.GetSpellDamage(target, SpellSlot.Q) > target.Health && Q.IsReady())
                 {
                     Q.Cast(target);
                     return;
                 }
 
                 //R
-                if (Player.Distance(target) <= E.Range && Player.GetSpellDamage(target, SpellSlot.E) > target.Health && E.IsReady())
+                if (Player.ServerPosition.Distance(target.ServerPosition) <= E.Range && Player.GetSpellDamage(target, SpellSlot.E) > target.Health && E.IsReady())
                 {
                     E.Cast(target);
                     return;

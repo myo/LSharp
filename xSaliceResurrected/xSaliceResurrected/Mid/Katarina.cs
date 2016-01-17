@@ -630,7 +630,7 @@ namespace xSaliceResurrected.Mid
 
         protected override void ObjAiHeroOnOnIssueOrder(Obj_AI_Base sender, GameObjectIssueOrderEventArgs args)
         {
-            if (ObjectManager.Player.IsCastingInterruptableSpell())
+            /*if (ObjectManager.Player.IsCastingInterruptableSpell())
             {
                 if (ObjectManager.Get<Obj_AI_Hero>().Any(h => h.IsEnemy && h.Health > 1 && R.IsInRange(h)))
                 {
@@ -640,7 +640,7 @@ namespace xSaliceResurrected.Mid
                 {
                     Player.IssueOrder(GameObjectOrder.MoveTo, Player.ServerPosition.Randomize(0, 800));
                 }
-            }
+            }*/
             if (args.Order == GameObjectOrder.AttackUnit && menu.Item("disableaa").GetValue<bool>() && Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
                 args.Process = false;

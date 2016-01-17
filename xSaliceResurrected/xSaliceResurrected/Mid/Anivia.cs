@@ -8,7 +8,7 @@ using Color = System.Drawing.Color;
 using xSaliceResurrected.Managers;
 using xSaliceResurrected.Utilities;
 
-namespace xSaliceResurrected.Champions
+namespace xSaliceResurrected.Mid
 {
     class Anivia : Champion
     {

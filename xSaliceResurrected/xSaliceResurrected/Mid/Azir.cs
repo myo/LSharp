@@ -676,7 +676,7 @@ namespace xSaliceResurrected.Mid
                 if (_insecTarget != null)
                 {
                     if (_insecTarget.HasBuffOfType(BuffType.Knockup) || _insecTarget.HasBuffOfType(BuffType.Knockback))
-                        if (Player.Distance(_insecTarget) < 200)
+                        if (Player.ServerPosition.Distance(_insecTarget.ServerPosition) < 200)
                         R2.Cast(_rVec);
 
                     Insec();

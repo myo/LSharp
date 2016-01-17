@@ -45,6 +45,9 @@ namespace xSaliceResurrected
                         new Akali();
                         _loaded = true;
                         break;
+                    case "anivia":
+                        new Anivia();
+                        break;
                     case "cassiopeia":
                         new Cassiopeia();
                         _loaded = true;

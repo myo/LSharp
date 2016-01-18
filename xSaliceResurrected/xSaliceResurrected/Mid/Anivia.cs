@@ -38,9 +38,9 @@ namespace xSaliceResurrected.Mid
             SpellManager.E = new Spell(SpellSlot.E, 650);
             SpellManager.R = new Spell(SpellSlot.R, 625);
 
-            SpellManager.Q.SetSkillshot(.5f, 110f, 750f, false, SkillshotType.SkillshotLine);
-            SpellManager.W.SetSkillshot(.25f, 1f, float.MaxValue, false, SkillshotType.SkillshotLine);
-            SpellManager.R.SetSkillshot(.25f, 200f, float.MaxValue, false, SkillshotType.SkillshotCircle);
+            SpellManager.Q.SetSkillshot(.25f, 110f, 850f, false, SkillshotType.SkillshotLine);
+            SpellManager.W.SetSkillshot(.5f, 1f, float.MaxValue, false, SkillshotType.SkillshotLine);
+            SpellManager.R.SetSkillshot(.25f, 450f, float.MaxValue, false, SkillshotType.SkillshotCircle);
 
             SpellManager.SpellList.Add(Q);
             SpellManager.SpellList.Add(W);

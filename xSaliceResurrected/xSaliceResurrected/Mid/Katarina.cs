@@ -363,7 +363,7 @@ namespace xSaliceResurrected.Mid
                 {
                     if (minion.IsValidTarget(Q.Range) &&
                         HealthPrediction.GetHealthPrediction(minion, (int)(Player.Distance(minion.Position) * 1000 / 1400), 200) <
-                        Player.GetSpellDamage(minion, SpellSlot.Q) - 35)
+                        Player.GetSpellDamage(minion, SpellSlot.Q))
                     {
                         Q.Cast(minion);
                         return;
